@@ -212,3 +212,17 @@ function uiElementInSight(el) {
 
     return isOnScreen;
 }
+
+function uiCopyElementText(el) {
+    var text = el.innerText;
+    if (text.startsWith('"')) {
+        text = text.substring(1, text.length - 1).replaceAll('\\n', '\n');
+    }
+
+    navigator.clipboard.writeText(text);
+
+    el.classList.remove('animate');
+    setTimeout(() => {
+        el.classList.add('animate');
+    }, 0);
+}
